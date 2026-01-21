@@ -9,21 +9,31 @@ It intentionally prioritizes simplicity and visibility over stealth or completen
 ## Requirements
 
 Linux system with `systemd`
+
 CMake
+
 A C++ compiler (gcc / clang)
+
 Root privileges (for installation and service control)
 
 ## Downloading
 git clone https://github.com/Byt3R3ad3er/WatchDog.git
+
 cd watchdog
+
 mkdir build
+
 cd build
+
 cmake ..
+
 make
 
 ## After downloading repo
 sudo cp build/watchdogd /usr/local/bin/
+
 sudo cp build/watchdogctl /usr/local/bin/
+
 sudo cp systemd/watchdog.service /etc/systemd/system/
 
 sudo systemctl daemon-reload
