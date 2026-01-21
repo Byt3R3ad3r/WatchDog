@@ -17,7 +17,7 @@ A C++ compiler (gcc / clang)
 Root privileges (for installation and service control)
 
 ## Downloading
-git clone https://github.com/Byt3R3ad3er/WatchDog.git
+git clone https://github.com/Byt3R3ad3r/WatchDog.git
 
 cd watchdog
 
