@@ -1,0 +1,24 @@
+[Unit]
+Description=Watch Dog Canary Monitor
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/watchdogd
+Restart=always
+RestartSec=5
+
+ProtectSystem=full
+ProtectHome=yes
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+
+ReadOnlyPaths=/etc/watchdog
+ReadWritePaths=/etc/watchdog
+
+
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
