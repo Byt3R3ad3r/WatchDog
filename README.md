@@ -35,6 +35,7 @@ sudo cp build/watchdogd /usr/local/bin/
 sudo cp build/watchdogctl /usr/local/bin/
 
 sudo cp systemd/watchdog.service /etc/systemd/system/
+sudo cp alert.sh /usr/local/lib/watchdog/
 
 sudo systemctl daemon-reload
 
@@ -54,3 +55,6 @@ sudo systemctl restart watchdog.service
 
 To see logs in regards to the utility:
 journalctl -u watchdog.service -n 5 --no-pager
+
+To enable email alert support:
+sudo apt install mailutils

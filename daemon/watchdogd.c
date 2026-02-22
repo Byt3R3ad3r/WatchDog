@@ -188,12 +188,16 @@ void create_canaries(const char *path, int count, const char *category) {
     }
 }
 
-//Part of email alert, todo
-void trigger_alert(const char *file, const char *event) {
+void trigger_alert(const char *file, const char *event, const char *email) {
+    if (email == NULL || strlen(email) == 0) {
+        syslog(LOG_INFO, "No alert email configured.");
+        return;
+    }
+
     char cmd[1024];
     snprintf(cmd, sizeof(cmd),
-        "/usr/local/lib/watchdog/alert.sh \"%s\" \"%s\"",
-        file, event
+        "/usr/local/lib/watchdog/alert.sh \"%s\" \"%s\" \"%s\"",
+        file, event, email
     );
     system(cmd);
 }
@@ -299,7 +303,7 @@ int main(void) {
             if ((event->mask & IN_OPEN) && filename) {
                 if (should_alert(filename)) {
                 syslog(LOG_ALERT, "WATCHDOG ALERT: OPENED %s", filename);
-                trigger_alert(filename, "OPENED");
+                trigger_alert(filename, "OPENED", cfg.email_to);
                 }
                 else {
                 syslog(LOG_INFO, "WatchDog cooldown active for %s", filename);
