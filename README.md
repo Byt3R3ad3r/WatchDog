@@ -58,3 +58,11 @@ journalctl -u watchdog.service -n 5 --no-pager
 
 To enable email alert support:
 sudo apt install mailutils
+
+## Known Limitations
+
+Userland monitoring only (no kernel hooks)
+Can be bypassed by disabling the service
+Does not detect read-only memory mapping
+Relies on inotify (local filesystem only)
+No tamper-protection mechanism
